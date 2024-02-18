@@ -1,0 +1,15 @@
+server:
+  servlet:
+    contextPath: /api
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/zrobleno
+    username: postgres
+    password: your_password
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      auto-commit: false
+  jpa:
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
