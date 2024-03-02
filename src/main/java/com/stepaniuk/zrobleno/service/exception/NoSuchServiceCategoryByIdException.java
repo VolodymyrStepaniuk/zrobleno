@@ -1,4 +1,4 @@
-package com.stepaniuk.zrobleno.service.category.exception;
+package com.stepaniuk.zrobleno.service.exception;
 
 import lombok.Getter;
 
