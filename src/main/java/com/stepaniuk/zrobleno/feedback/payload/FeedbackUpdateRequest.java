@@ -2,7 +2,6 @@ package com.stepaniuk.zrobleno.feedback.payload;
 
 import com.stepaniuk.zrobleno.validation.feedback.Comment;
 import com.stepaniuk.zrobleno.validation.feedback.Rating;
-import com.stepaniuk.zrobleno.validation.shared.Id;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -13,10 +12,6 @@ import org.springframework.lang.Nullable;
 @ToString
 @EqualsAndHashCode
 public class FeedbackUpdateRequest {
-
-  @Id
-  @Nullable
-  private Long orderId;
 
   @Rating
   @Nullable
