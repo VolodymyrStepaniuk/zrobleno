@@ -37,7 +37,7 @@ public class Feedback {
   @Column(name = "order_id", nullable = false)
   private Long orderId;
 
-  @Column(name = "owner_uuid", nullable = false)
+  @Column(name = "owner_id", nullable = false)
   private UUID ownerId;
 
   @Column(name = "rating", nullable = false)

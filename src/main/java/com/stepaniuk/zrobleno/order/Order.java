@@ -40,7 +40,7 @@ public class Order {
   @Column(name = "id", nullable = false)
   private Long id;
 
-  @Column(name = "owner_uuid", nullable = false)
+  @Column(name = "owner_id", nullable = false)
   private UUID ownerId;
 
   @ManyToOne

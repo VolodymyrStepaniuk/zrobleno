@@ -42,7 +42,7 @@ public class Service {
   @Column(name = "category_id", nullable = false)
   private Long categoryId;
 
-  @Column(name = "owner_uuid", nullable = false)
+  @Column(name = "owner_id",columnDefinition = "uuid", nullable = false)
   private UUID ownerId;
 
   @Column(name = "title", nullable = false)
