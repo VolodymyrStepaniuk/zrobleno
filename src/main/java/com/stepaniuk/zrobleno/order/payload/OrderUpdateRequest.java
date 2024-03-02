@@ -1,7 +1,7 @@
 package com.stepaniuk.zrobleno.order.payload;
 
 import com.stepaniuk.zrobleno.order.status.OrderStatusName;
-import jakarta.validation.constraints.NotNull;
+import com.stepaniuk.zrobleno.validation.shared.Id;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -18,7 +18,7 @@ public class OrderUpdateRequest {
   @Nullable
   private OrderStatusName status;
 
-  @NotNull
-  private List<Long> serviceIds;
+  @Nullable
+  private List<@Id Long> serviceIds;
 
 }

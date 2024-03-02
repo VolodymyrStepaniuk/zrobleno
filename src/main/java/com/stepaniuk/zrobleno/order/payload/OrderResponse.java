@@ -1,7 +1,7 @@
 package com.stepaniuk.zrobleno.order.payload;
 
 import com.stepaniuk.zrobleno.feedback.payload.FeedbackResponse;
-import com.stepaniuk.zrobleno.order.status.OrderStatus;
+import com.stepaniuk.zrobleno.order.status.OrderStatusName;
 import com.stepaniuk.zrobleno.validation.shared.Id;
 import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
@@ -30,10 +30,10 @@ public class OrderResponse extends RepresentationModel<OrderResponse> {
   private UUID ownerId;
 
   @NotNull
-  private OrderStatus status;
+  private OrderStatusName status;
 
   @NotNull
-  private List<Long> serviceIds;
+  private List<@Id Long> serviceIds;
 
   @Nullable
   private final FeedbackResponse feedback;

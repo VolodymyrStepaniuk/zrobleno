@@ -1,5 +1,6 @@
 package com.stepaniuk.zrobleno.order.payload;
 
+import com.stepaniuk.zrobleno.validation.shared.Id;
 import jakarta.validation.constraints.NotNull;
 import java.util.List;
 import java.util.UUID;
@@ -18,6 +19,6 @@ public class OrderCreateRequest {
   private UUID ownerId;
 
   @NotNull
-  private List<Long> serviceIds;
+  private List<@Id Long> serviceIds;
 
 }
