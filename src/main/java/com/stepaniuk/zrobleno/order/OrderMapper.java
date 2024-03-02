@@ -26,7 +26,7 @@ public interface OrderMapper {
   @AfterMapping
   @Named("addLinks")
   default OrderResponse addLinks(Order order, @MappingTarget OrderResponse response) {
-    response.add(Link.of("/feedbacks/" + order.getId()).withSelfRel());
+    response.add(Link.of("/orders/" + order.getId()).withSelfRel());
     return response;
   }
 }
