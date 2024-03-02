@@ -13,6 +13,6 @@ import org.hibernate.validator.constraints.Length;
 @Documented
 @Constraint(validatedBy = {})
 @Length(min = 1, max = 512)
-public @interface LongDescription {
+public @interface Description {
 
 }
