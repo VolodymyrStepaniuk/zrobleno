@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS public.services
     category_id      bigint                                              NOT NULL,
     owner_id         uuid                                                NOT NULL,
     title            character varying(255) COLLATE pg_catalog."default" NOT NULL,
-    description  text COLLATE pg_catalog."default"                       NOT NULL,
+    description      text COLLATE pg_catalog."default"                   NOT NULL,
     image_urls       text[] COLLATE pg_catalog."default"                 NOT NULL,
     price            numeric                                             NOT NULL,
     priority         integer                                             NOT NULL,
