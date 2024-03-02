@@ -68,8 +68,6 @@ public class FeedbackService {
         () -> new NoSuchFeedbackByIdException(id)
     );
 
-    if(request.getOrderId() != null)
-      feedback.setOrderId(request.getOrderId());
     if(request.getRating() != null)
       feedback.setRating(request.getRating());
     if(request.getComment() != null)
