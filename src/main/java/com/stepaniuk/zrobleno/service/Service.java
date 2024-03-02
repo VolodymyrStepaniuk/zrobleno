@@ -1,18 +1,19 @@
 package com.stepaniuk.zrobleno.service;
 
-import com.stepaniuk.zrobleno.price.Price;
 import io.hypersistence.utils.hibernate.type.array.ListArrayType;
-import io.hypersistence.utils.hibernate.type.json.JsonType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -33,29 +34,32 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 public class Service {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "services_id_gen")
+  @SequenceGenerator(name = "services_id_gen", sequenceName = "services_id_seq", allocationSize = 1)
   @Column(name = "id", nullable = false)
   private Long id;
 
   @Column(name = "category_id", nullable = false)
   private Long categoryId;
 
+  @Column(name = "owner_uuid", nullable = false)
+  private UUID ownerId;
+
   @Column(name = "title", nullable = false)
   private String title;
 
-  @Column(name = "short_description", nullable = false)
-  private String shortDescription;
-
-  @Column(name = "long_description", nullable = false, columnDefinition = "text")
-  private String longDescription;
+  @Column(name = "description", nullable = false, columnDefinition = "text")
+  private String description;
 
   @Type(ListArrayType.class)
   @Column(name = "image_urls", columnDefinition = "text[]", nullable = false)
   private List<String> imageUrls;
 
-  @Type(JsonType.class)
-  @Column(name = "price", nullable = false, columnDefinition = "jsonb")
-  private Price price;
+  @Column(name = "price", nullable = true)
+  private BigDecimal price;
+
+  @Column(name = "priority", nullable = false)
+  private Integer priority;
 
   @Column(name = "created_at", nullable = false, updatable = false)
   @CreatedDate
@@ -97,9 +101,12 @@ public class Service {
     return getClass().getSimpleName() + "(" +
         "id = " + id + ", " +
         "categoryId = " + categoryId + ", " +
+        "ownerId = " + ownerId + ", " +
         "title = " + title + ", " +
+        "description = " + description + ", " +
         "imageUrls = " + imageUrls + ", " +
         "price = " + price + ", " +
+        "priority = " + priority + ", " +
         "createdAt = " + createdAt + ", " +
         "lastModifiedAt = " + lastModifiedAt + ")";
   }
