@@ -1,12 +1,9 @@
-package com.stepaniuk.zrobleno.service.category.payload;
+package com.stepaniuk.zrobleno.service.payload.category;
 
 import com.stepaniuk.zrobleno.validation.service.ImageUrl;
-import com.stepaniuk.zrobleno.validation.service.LongDescription;
-import com.stepaniuk.zrobleno.validation.service.ShortDescription;
+import com.stepaniuk.zrobleno.validation.service.Description;
 import com.stepaniuk.zrobleno.validation.service.Title;
 import com.stepaniuk.zrobleno.validation.shared.Id;
-import io.hypersistence.utils.hibernate.type.array.ListArrayType;
-import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotNull;
 import java.time.Instant;
 import java.util.List;
@@ -14,28 +11,34 @@ import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.ToString;
+import org.springframework.hateoas.RepresentationModel;
+import org.springframework.hateoas.server.core.Relation;
 
 @Getter
 @AllArgsConstructor
 @ToString
-@EqualsAndHashCode
-public class ServiceCategoryResponse {
+@EqualsAndHashCode(callSuper = true)
+@Relation(collectionRelation = "serviceCategories", itemRelation = "serviceCategories")
+public class ServiceCategoryResponse extends RepresentationModel<ServiceCategoryResponse> {
+
   @Id
   @NotNull
   private Long id;
+
   @Title
   @NotNull
   private String title;
-  @ShortDescription
+
+  @Description
   @NotNull
-  private String shortDescription;
-  @LongDescription
-  @NotNull
-  private String longDescription;
+  private String description;
+
   @NotNull
   private List<@ImageUrl String> imageUrls;
+
   @NotNull
   private final Instant createdAt;
+
   @NotNull
   private final Instant lastModifiedAt;
 }
