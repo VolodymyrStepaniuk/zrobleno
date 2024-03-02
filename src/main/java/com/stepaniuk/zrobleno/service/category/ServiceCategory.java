@@ -7,6 +7,7 @@ import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import java.time.Instant;
 import java.util.List;
@@ -30,18 +31,16 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @Table(name = "service_categories")
 public class ServiceCategory {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "service_categories_id_gen")
+  @SequenceGenerator(name = "service_categories_id_gen", sequenceName = "service_categories_id_seq", allocationSize = 1)
   @Column(name = "id", nullable = false)
   private Long id;
 
   @Column(name = "title", nullable = false)
   private String title;
 
-  @Column(name = "short_description", nullable = false)
-  private String shortDescription;
-
-  @Column(name = "long_description", nullable = false, columnDefinition = "text")
-  private String longDescription;
+  @Column(name = "description", nullable = false, columnDefinition = "text")
+  private String description;
 
   @Type(ListArrayType.class)
   @Column(name = "image_urls", columnDefinition = "text[]", nullable = false)
@@ -87,6 +86,7 @@ public class ServiceCategory {
     return getClass().getSimpleName() + "(" +
         "id = " + id + ", " +
         "title = " + title + ", " +
+        "description = " + description + ", " +
         "imageUrls = " + imageUrls + ", " +
         "createdAt = " + createdAt + ", " +
         "lastModifiedAt = " + lastModifiedAt + ")";
