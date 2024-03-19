@@ -7,6 +7,7 @@ import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,7 +29,8 @@ public class FeedbackController {
 
   @PostMapping
   public ResponseEntity<FeedbackResponse> createFeedback(@RequestBody FeedbackCreateRequest request) {
-    return ResponseEntity.ok(feedbackService.createFeedback(request));
+    return new ResponseEntity<>(feedbackService.createFeedback(request),
+        HttpStatus.CREATED);
   }
 
   @GetMapping("/{id}")
