@@ -4,9 +4,6 @@ import com.stepaniuk.zrobleno.feedback.payload.FeedbackResponse;
 import com.stepaniuk.zrobleno.order.status.OrderStatusName;
 import com.stepaniuk.zrobleno.validation.shared.Id;
 import jakarta.validation.constraints.NotNull;
-import java.time.Instant;
-import java.util.List;
-import java.util.UUID;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -14,6 +11,9 @@ import lombok.ToString;
 import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.server.core.Relation;
 import org.springframework.lang.Nullable;
+
+import java.time.Instant;
+import java.util.UUID;
 
 @Getter
 @AllArgsConstructor
@@ -33,7 +33,11 @@ public class OrderResponse extends RepresentationModel<OrderResponse> {
   private OrderStatusName status;
 
   @NotNull
-  private List<@Id Long> serviceIds;
+  @Id
+  private Long serviceId;
+
+  @Nullable
+  private String comment;
 
   @Nullable
   private final FeedbackResponse feedback;
