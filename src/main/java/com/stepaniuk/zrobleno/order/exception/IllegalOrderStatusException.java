@@ -15,7 +15,7 @@ public class IllegalOrderStatusException extends RuntimeException{
   private final Long id;
 
   public IllegalOrderStatusException(OrderStatusName status, OrderStatusName previousStatus,Long id){
-    super("Illegal order status! From " + previousStatus +" to "+ status+" in order with id: "+id);
+    super("Illegal order status! From " + previousStatus +" to "+ status + " in order with id: "+id);
     this.status = status;
     this.previousStatus = previousStatus;
     this.id = id;
