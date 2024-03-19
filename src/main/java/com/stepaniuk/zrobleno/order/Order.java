@@ -47,9 +47,11 @@ public class Order {
   @JoinColumn(name = "status_id")
   private OrderStatus status;
 
-  @Type(ListArrayType.class)
-  @Column(name = "service_ids", columnDefinition = "bigint[]", nullable = false)
-  private List<Long> serviceIds;
+  @Column(name="service_id", nullable = false)
+  private Long serviceId;
+
+  @Column(name = "comment", nullable = true)
+  private String comment;
 
   @Column(name = "created_at", nullable = false, updatable = false)
   @CreatedDate
@@ -92,7 +94,7 @@ public class Order {
         "id = " + id + ", " +
         "ownerId = " + ownerId + ", " +
         "status = " + status + ", " +
-        "serviceIds = " + serviceIds + ", " +
+        "serviceId = " + serviceId + ", " +
         "createdAt = " + createdAt + ", " +
         "lastModifiedAt = " + lastModifiedAt + ")";
   }
