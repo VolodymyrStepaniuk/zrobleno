@@ -9,6 +9,7 @@ import com.stepaniuk.zrobleno.order.payload.OrderUpdateRequest;
 import com.stepaniuk.zrobleno.order.status.OrderStatusName;
 import com.stepaniuk.zrobleno.order.status.OrderStatusRepository;
 import com.stepaniuk.zrobleno.order.exception.NoSuchOrderStatusByNameException;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -33,7 +34,7 @@ public class OrderService {
 
     order.setStatus(orderStatus);
     order.setOwnerId(request.getOwnerId());
-    order.setServiceIds(request.getServiceIds());
+    order.setServiceId(request.getServiceId());
 
     var savedOrder = orderRepository.save(order);
     return orderMapper.toResponse(savedOrder, null);
@@ -61,15 +62,11 @@ public class OrderService {
       order.setStatus(orderStatus);
     }
 
-    if (request.getServiceIds() != null && !request.getServiceIds().isEmpty()) {
-      order.setServiceIds(request.getServiceIds());
-    }
-
     return orderMapper.toResponse(orderRepository.save(order), feedback);
   }
 
   public Page<OrderResponse> getAllOrders(Pageable pageable,
-      @Nullable Long ownerId) {
+      @Nullable UUID ownerId) {
 
     Specification<Order> specification = Specification.where(null);
 
