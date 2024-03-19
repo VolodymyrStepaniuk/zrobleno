@@ -8,6 +8,7 @@ import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,7 +30,8 @@ public class ServiceController {
 
   @PostMapping
   public ResponseEntity<ServiceResponse> createService(@RequestBody ServiceCreateRequest request) {
-    return ResponseEntity.ok(service.createService(request));
+    return new ResponseEntity<>(service.createService(request),
+        HttpStatus.CREATED);
   }
 
   @GetMapping("/{id}")
