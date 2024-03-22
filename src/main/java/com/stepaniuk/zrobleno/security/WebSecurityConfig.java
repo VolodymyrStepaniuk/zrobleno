@@ -29,8 +29,8 @@ public class WebSecurityConfig {
     // @formatter:off
     return http.csrf(AbstractHttpConfigurer::disable)
         .authorizeHttpRequests(
-            auth -> auth.anyRequest().permitAll()
-//            auth -> auth.anyRequest().authenticated()
+//            auth -> auth.anyRequest().permitAll()
+            auth -> auth.anyRequest().authenticated()
         )
         .sessionManagement(session -> session.sessionCreationPolicy(STATELESS))
         .oauth2ResourceServer(r -> r.jwt(jwt -> jwt.decoder(decoder).jwtAuthenticationConverter(converter)))
@@ -45,7 +45,7 @@ public class WebSecurityConfig {
     converter.setJwtGrantedAuthoritiesConverter(jwt -> {
       Iterable<String> roles = (Iterable<String>) jwt.getClaimAsMap("realm_access").get("roles");
       return StreamSupport.stream(roles.spliterator(), false)
-          .map(s -> new SimpleGrantedAuthority("role_" + s)).map(GrantedAuthority.class::cast)
+          .map(s -> new SimpleGrantedAuthority("ROLE_" + s)).map(GrantedAuthority.class::cast)
           .toList();
     });
     return converter;
