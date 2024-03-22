@@ -30,9 +30,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.Link;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 @ControllerLevelUnitTest(controllers = ServiceController.class)
+@WithMockUser(username = "user", roles = "USER")
 class ServiceControllerTest {
 
   @Autowired
