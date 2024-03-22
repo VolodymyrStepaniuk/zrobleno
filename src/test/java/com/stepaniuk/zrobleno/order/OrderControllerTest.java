@@ -29,9 +29,11 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.hateoas.Link;
 import org.springframework.lang.Nullable;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 @ControllerLevelUnitTest(controllers = OrderController.class)
+@WithMockUser(username = "user", roles = "USER")
 class OrderControllerTest {
 
   @Autowired
