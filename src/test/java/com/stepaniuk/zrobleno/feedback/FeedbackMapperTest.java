@@ -1,18 +1,16 @@
 package com.stepaniuk.zrobleno.feedback;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import com.stepaniuk.zrobleno.feedback.payload.FeedbackResponse;
-import com.stepaniuk.zrobleno.service.payload.ServiceResponse;
 import com.stepaniuk.zrobleno.testspecific.MapperLevelUnitTest;
-import java.time.Duration;
-import java.time.Instant;
-import java.util.UUID;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+
+import java.time.Duration;
+import java.time.Instant;
+import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @MapperLevelUnitTest
 @ContextConfiguration(classes = {FeedbackMapperImpl.class})

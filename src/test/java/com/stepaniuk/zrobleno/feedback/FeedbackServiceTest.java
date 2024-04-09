@@ -49,7 +49,6 @@ class FeedbackServiceTest {
     // given
     var ownerId = UUID.randomUUID();
     var request = new FeedbackCreateRequest(1L, ownerId, 5, "comment");
-    var feedback = getNewFeedbackWithAllFields(1L, request.getOrderId(), ownerId);
 
     when(feedbackRepository.save(any())).thenAnswer(answer(getFakeSave(1L)));
     // when
